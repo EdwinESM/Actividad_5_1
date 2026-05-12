@@ -1,14 +1,14 @@
 clear; close all; clc;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% PUNTOS DE GEOGEBRA %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definimos la lista de puntos según el orden proporcionado
+% Lista de puntos según el orden proporcionado
 Puntos = [3,6; 3,7; 4,7.5; 3.5,7.8; 3,8.5; 3.4,9.5; 4.3,9.5; 5,9.2; ...
           5.5,9.7; 6,10; 5.5,9.7; 5,10; 5.5,9.7; 6,9.2; 6.6,9.5; 7.6,9.4; 8,8.5; ...
           7.5,7.8; 7,7.5; 8,7; 8,6; 7,5.5; 6.5,6; 6,6.5; 6,9.2; 6,6.5; ...
           5.5,6; 5,6.5; 5,9.2; 5,6.5; 4.5,6 ; 4,5.5; 3,6];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TIEMPO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-tf = 60;                    % Aumentamos el tiempo para recorrer toda la figura
+tf = 60;                    % Tiempo para recorrer toda la figura
 ts = 0.1;                   % Tiempo de muestreo
 t = 0: ts: tf;              % Vector de tiempo
 N = length(t);              % Muestras
@@ -43,7 +43,7 @@ for k = 1:N-1
     % Calculamos la orientación deseada
     phi_d = atan2(dy, dx);
     
-    % Velocidad angular (diferencia de ángulos)
+    % Velocidad angular 
     w(k) = atan2(sin(phi_d - phi(k)), cos(phi_d - phi(k)))/ts;
     
     % Actualizamos la orientación para el siguiente paso del cálculo
@@ -72,11 +72,11 @@ set(scene,'position',sizeScreen);
 camlight('headlight'); 
 axis equal; grid on; box on;
 xlabel('x(m)'); ylabel('y(m)'); zlabel('z(m)'); 
-view([0 90]); % Vista superior para ver mejor la mariposa
+view([0 90]);
 axis([2 9 4 11]); 
 
 % Graficar robots en la posicion inicial
-scale = 1.5; % Escala ajustada para el tamaño de la mariposa
+scale = 1.5;
 MobileRobot_5;
 H1=MobilePlot_4(x1(1),y1(1),phi(1),scale); hold on;
 H2=plot3(x1(1),y1(1),0,'r','lineWidth',2);
@@ -87,7 +87,7 @@ for k=1:step:N
     delete(H1);    
     H1=MobilePlot_4(x1(k),y1(k),phi(k),scale);
     set(H2, 'XData', x1(1:k), 'YData', y1(1:k), 'ZData', zeros(1,k));
-    pause(0.01); % Pausa más corta para fluidez
+    pause(0.01);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Graficas de Control %%%%%%%%%%%%%%%%%%%%%%%%%%%%
